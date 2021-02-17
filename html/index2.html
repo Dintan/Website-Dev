@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <title>Sinopsis</title>
+    <link href="C:\Users\aster\Documents\Web develpoment\Website Dev\css\epl.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+
+<body>
+    <main>
+
+        <header>
+            <div id="logo"></div>
+            <a href="C:\Users\aster\Documents\Web develpoment\Website Dev\html\index2.html">Alien</hre>
+            <nav>
+
+
+                <div class="menu">
+                    <a href="C:\Users\aster\Documents\Web develpoment\Website Dev\html\aboutMe.html">Me &nbsp;&nbsp;</a>
+
+            </div>
+
+
+            <div class="menu">
+                <a href="C:\Users\aster\Documents\Web develpoment\Website Dev\html\fotos.html">Fotos &nbsp;&nbsp;</a>
+
+            </div>
+            <div class="menu">
+
+                <a href="C:\Users\aster\Documents\Web develpoment\Website Dev\html\contact.html">Contact &nbsp;&nbsp;</a>
+            </div>
+            </nav>
+
+        </header>
+
+        <section id="fotoportada">
+            <div id="animacioninteractiva">
+            </div>
+        </section>
+
+
+        <footer>Daniel Kramer</footer>
+
+</body>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
+
+
+<script>
+    let ArcosAnimados = function(p) {
+        var angrot = 0;
+        var r = 0,
+            g = 0,
+            b = 0;
+
+
+        p.setup = function() {
+            r = p.random(255);
+            g = p.random(255);
+            b = p.random(255);
+
+            let anchoContenedor = $("#fotoportada").width();
+
+            p.createCanvas(anchoContenedor, 500);
+            p.angleMode(p.DEGREES);
+            p.background(r, g, b);
+
+
+        }
+        p.draw = function() {
+            p.background(r, g, b, 20);
+            p.translate(p.mouseX, p.mouseY);
+            angrot += 2;
+            p.rotate(angrot);
+            p.strokeWeight(12);
+            p.stroke(255);
+            p.noFill();
+            p.arc(0, 0, 200, 200, 0, 90);
+            p.arc(0, 0, 240, 240, 45, 180);
+            p.arc(0, 0, 280, 280, 270, 90);
+            p.arc(0, 0, 320, 320, 95, 180);
+            p.arc(0, 0, 360, 360, 180, 360);
+        }
+    }
+    let anim = new p5(ArcosAnimados, 'animacioninteractiva');
+</script>
+
+
+</html>
