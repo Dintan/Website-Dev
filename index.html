@@ -5,7 +5,7 @@
 <head>
     <title>Sinopsis</title>
     <link href="C:\Users\aster\Documents\Web develpoment\Website Dev\css\epl.css" rel="stylesheet" type="text/css" />
-
+    <meta charset="UTF-8" />
 
 </head>
 
@@ -53,6 +53,19 @@
 <script>
     let ArcosAnimados = function(p) {
         var angrot = 0;
+
+
+        // var angulo = 22.5,
+        //     var listaValores = [22.5, 40, 100, 888];
+        //   listaValores[0]
+        //  listaValores[3]
+
+        var datosArcos = []
+
+        // datosArcos[0] = {diametro:100,angimi:0,angfin:180,angrot:0, angvel:4}
+        // datosArcos[1] = {diametro:200,angimi:0,angfin:180,angrot:0, angvel:4}
+        // datosArcos[2] = {diametro:300,angimi:0,angfin:180,angrot:0, angvel:4}
+
         var r = 0,
             g = 0,
             b = 0;
@@ -69,22 +82,43 @@
             p.angleMode(p.DEGREES);
             p.background(r, g, b);
 
+            for (var i = 0; i < 20; i++) {
+                var diametroincremento = p.map(i, 0, 19, 80, p.width);
+                datosArcos[i] = {
+                    "diametro": diametroincremento,
+                    "angIni": p.random(0, 360),
+                    "angFinal": p.random(0, 360),
+                    "angVel": p.random(0.5, 8),
+                    "angRot": 0,
+                    "grosor": p.random(3, 12),
+                    "color": p.color(p.random(0, 255), p.random(0, 255), p.random(0, 255))
+                }
+
+            }
+            console.log(datosArcos);
 
         }
         p.draw = function() {
             p.background(r, g, b, 20);
-            p.translate(p.mouseX, p.mouseY);
-            angrot += 2;
-            p.rotate(angrot);
-            p.strokeWeight(12);
-            p.stroke(255);
+            p.translate(p.width / 2, p.height / 2);
             p.noFill();
-            p.arc(0, 0, 200, 200, 0, 90);
-            p.arc(0, 0, 240, 240, 45, 180);
-            p.arc(0, 0, 280, 280, 270, 90);
-            p.arc(0, 0, 320, 320, 95, 180);
-            p.arc(0, 0, 360, 360, 180, 360);
+
+            // bucle tipo for
+            for (var i = 0; i < 20; i++) {
+                p.push();
+                p.rotate(0);
+                p.rotate(datosArcos[i].angRot += datosArcos[i].angVel)
+                p.strokeWeight(datosArcos[i].grosor);
+                p.stroke(datosArcos[i].color);
+
+                p.arc(0, 0, datosArcos[i].diametro, datosArcos[i].diametro, datosArcos[i].angIni, datosArcos[i].angFinal);
+
+                p.pop();
+            }
+
         }
+
+        //funcion map js
     }
     let anim = new p5(ArcosAnimados, 'animacioninteractiva');
 </script>
